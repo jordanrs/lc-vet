@@ -1,0 +1,11 @@
+<html>
+	<head>
+		<LINK REL=StyleSheet HREF="{{ STATIC_URL }}style.css" TYPE="text/css" >
+		<title>{{ flatpage.title }}</title>
+	</head>
+	<body>
+		<h1>{{ flatpage.title }}</h1>
+		<img src="{{ STATIC_URL }}test.jpg" />
+		{{ flatpage.content }}
+	</body>
+</html>
