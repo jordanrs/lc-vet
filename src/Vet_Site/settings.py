@@ -14,7 +14,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
         'NAME': 'lc_vet',                      # Or path to database file if using sqlite3.
         'USER': 'admin',                      # Not used with sqlite3.
-        'PASSWORD': 'l0ngf1eld',                  # Not used with sqlite3.
+        'PASSWORD': '1234',                  # Not used with sqlite3.
         'HOST': 'localhost',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '3306',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -67,7 +67,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-                    'C:\Users\Test Build\My Documents\Aptana Studio 3 Workspace\Vet_Site\src\Vet_Site\static',
+                    'C:/Users/Emma/Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/Vet_Site/static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -110,8 +110,8 @@ TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    
-    "C:/Users/Test Build/My Documents/Aptana Studio 3 Workspace/Vet_Site/src/Vet_Site/templates",
+    'C:/Users/Emma/Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/Vet_Site/templates',
+    'C:/Users/Emma/My Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/search/templates',
 )
 
 INSTALLED_APPS = (
