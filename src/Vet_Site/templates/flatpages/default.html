@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<h1>{{ flatpage.title }}</h1>
-		<img src="{{ STATIC_URL }}test.jpg" />
 		{{ flatpage.content }}
+		{% include '_search-form.html' %}
 	</body>
 </html>

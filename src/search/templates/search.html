@@ -1,0 +1,35 @@
+<html>
+	<head>
+		<title>
+			The search page
+		</title>
+	</head>
+	<body>
+		{% include '_search-form.html' %}
+		{% if keyword_results or results %}
+			<p> you searched for "{{query}}"; the results are listed below</p>
+	        {% if keyword_results %}
+	           <p>Recommended Pages</p>
+	           <ul>
+	               {% for page in keyword_results %}
+	           	       <li><a href="{{page.get_absolute_url}}">{{page.title}}</a> </li>
+	           	   {% endfor %}
+	           </ul>
+	           
+	        {% endif %}
+	        <ul>
+	            {% for page in results %}
+	                <li><a href="{{page.get_absolute_url}}">{{page.title}}</a> </li>
+	            {% endfor %}
+	        </ul>
+		{% else %}
+		  {% if query %}
+		      <p>There are no results to be show</p>
+		  {% else %}
+		      <p>Type a search query into the box and press submit</p>
+		  {% endif %}
+		{% endif %}
+
+		
+	</body>
+</html>
