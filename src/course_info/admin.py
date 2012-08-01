@@ -1,21 +1,22 @@
 from django.contrib import admin
 from course_info.models import *
 
-class PastPaperInline(admin.StackedInline):
-    model = PastPaper
-
 class CourseSectionInline(admin.StackedInline):
     model = CourseSection
+    extra = 1
     
-class NotesInline(admin.StackedInline):
-    model = Note
+class CourseFileInline(admin.StackedInline):
+    model = CourseFile
+    extra = 1
 
-class CourseAdmin(admin.ModelAdmin):
+class CourseAdmin(admin.ModelAdmin):  
+    
+    model = Course
+              
     prepopulated_fields = {"slug": ("name",)}
     inlines = [
-               CourseSectionInline,
-               PastPaperInline,            
-               NotesInline,
+               CourseSectionInline,           
+               CourseFileInline,
                ]
         
 class LecturerAdmin(admin.ModelAdmin):

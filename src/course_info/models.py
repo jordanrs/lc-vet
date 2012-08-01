@@ -2,9 +2,6 @@ from django.db import models
 
 # Create your models here.
 
-
-
-
 class Lecturer(models.Model):
     VERY_BAD_TEACHING = 1
     BAD_TEACHING = 2
@@ -88,8 +85,7 @@ class Course(models.Model):
     study_year = models.IntegerField(choices=YEARS, help_text = "The year the course is taken.")
     term = models.IntegerField(choices=TERMS, help_text="The term the course is taken.")
     difficulty = models.IntegerField(choices = DIFF_SCALE, help_text = "How difficult the course is.")
-    slug = models.SlugField(unique=True, help_text = "Prepopulated from course name. Must be unique.")
-    
+    slug = models.SlugField(unique=True, help_text = "Prepopulated from course name. Must be unique.")    
     
     def __unicode__(self):
         return self.name
@@ -99,22 +95,10 @@ class Course(models.Model):
     
     class Meta:
         ordering = ['study_year', 'term']
-        
-class PastPaper(models.Model):
-    name = models.CharField(max_length = 255, help_text="Past Paper Name.")
-    year = models.DateField(blank = True, help_text="Examination Year.")
-    file = models.FileField(upload_to = "/uploads/past-papers/")
-    course = models.ForeignKey(Course)
-    
-    def __unicode__(self):
-        return self.name
-    
-    class Meta:
-        verbose_name = "Past Paper"
-        verbose_name_plural = "Past Papers"
-        
+
+
 class CourseSection(models.Model):
-    topic = models.CharField(max_length = 255)
+    topic = models.CharField(max_length = 255, help_text="The name of a sub section of the course")
     description = models.TextField(help_text = "Description about this section of the course.")
     tips = models.TextField(blank=True, help_text="Any tips for this section.")   
     lecturers = models.ManyToManyField(Lecturer, help_text = "Who teaches the course.")
@@ -126,10 +110,33 @@ class CourseSection(models.Model):
     class Meta:
         verbose_name = "Course Section"
         verbose_name_plural = "Course Sections"
-        
-class Note(models.Model):
-    name = models.CharField(max_length = 255)
-    created_by = models.CharField(max_length = 255)
-    file = models.FileField(upload_to="/uploads/notes")
-    course_section = models.ForeignKey(CourseSection)
+ 
+class CourseFile(models.Model):
+    PAST_PAPER = 1
+    IMAGE = 2
+    LECTURES = 3
+    NOTES = 4
+    ESSAYS = 5
+    
+    COURSE_FILE = (
+                   (PAST_PAPER, 'Past Paper'),
+                   (IMAGE, 'Image'),
+                   (LECTURES, 'Lectures'),
+                   (NOTES, 'Notes'),
+                   (ESSAYS, 'Essays'),
+                   )
+    
+    name = models.CharField(max_length = 255, help_text="Course File Name.")
+    year = models.DateField(blank = True, help_text="Examination Year.")
+    file = models.FileField(upload_to = "/uploads/course_file/")
+    created_by = models.CharField(max_length = 255, blank = True)
+    course_section = models.ForeignKey(CourseSection, blank = True)
     course = models.ForeignKey(Course)
+    type = models.IntegerField(choices=COURSE_FILE)
+    
+    def __unicode__(self):
+        return self.name
+    
+    class Meta:
+        verbose_name = "Course File"
+        verbose_name_plural = "Course Files"
