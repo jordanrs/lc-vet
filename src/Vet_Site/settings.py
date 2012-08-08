@@ -112,6 +112,7 @@ TEMPLATE_DIRS = (
     # Don't forget to use absolute paths, not relative paths.
     'C:/Users/Emma/Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/Vet_Site/templates',
     'C:/Users/Emma/My Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/search/templates',
+    'C:/Users/Emma/My Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/coltrane/templates',
 )
 
 INSTALLED_APPS = (

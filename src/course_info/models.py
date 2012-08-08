@@ -91,7 +91,7 @@ class Course(models.Model):
         return self.name
     
     def get_absolute_url(self):
-        return "/course/{0}".format(self.slug)
+        return "/courses/year-{0}/{1}".format(self.study_year, self.slug)
     
     class Meta:
         ordering = ['study_year', 'term']
@@ -103,9 +103,13 @@ class CourseSection(models.Model):
     tips = models.TextField(blank=True, help_text="Any tips for this section.")   
     lecturers = models.ManyToManyField(Lecturer, help_text = "Who teaches the course.")
     course = models.ForeignKey(Course)
+    slug = models.SlugField(unique= True, help_text="Prepopulated from topic name. Must be unique")
     
     def __unicode__(self):
         return "{0} - {1}".format(self.course.name, self.topic) 
+    
+    def get_absolute_url(self):
+        return "{0}/{1}".format(self.course.get_absolute_url(), self.slug)
     
     class Meta:
         verbose_name = "Course Section"
@@ -114,23 +118,23 @@ class CourseSection(models.Model):
 class CourseFile(models.Model):
     PAST_PAPER = 1
     IMAGE = 2
-    LECTURES = 3
+    LECTURE = 3
     NOTES = 4
-    ESSAYS = 5
+    ESSAY = 5
     
     COURSE_FILE = (
                    (PAST_PAPER, 'Past Paper'),
                    (IMAGE, 'Image'),
-                   (LECTURES, 'Lectures'),
+                   (LECTURE, 'Lecture'),
                    (NOTES, 'Notes'),
-                   (ESSAYS, 'Essays'),
+                   (ESSAY, 'Essay'),
                    )
     
     name = models.CharField(max_length = 255, help_text="Course File Name.")
-    year = models.DateField(blank = True, help_text="Examination Year.")
+    year = models.DateField(blank = True, help_text="Examination Year or year the file was created")
     file = models.FileField(upload_to = "/uploads/course_file/")
-    created_by = models.CharField(max_length = 255, blank = True)
-    course_section = models.ForeignKey(CourseSection, blank = True)
+    created_by = models.CharField(max_length = 255, blank = True, help_text="Files author")
+    course_section = models.ForeignKey(CourseSection, blank = True, help_text="Course section have to be be added and saved above to be available")
     course = models.ForeignKey(Course)
     type = models.IntegerField(choices=COURSE_FILE)
     

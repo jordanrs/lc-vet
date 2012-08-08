@@ -48,10 +48,11 @@ class Entry(models.Model):
         super(Entry, self).save()
     
     def __unicode__(self):
-        return self.name
+        return self.title
+    
     
     def get_absolute_url(self):
-        return "/weblog/%s/%s" % (self.pub_date.strftime("%Y/%b/%d").tolower(), self.slug)
+        return "/weblog/%s/%s" % (self.pub_date.strftime("%Y/%b/%d").lower(), self.slug)
     
     class Meta:
         verbose_name_plural = "Entries"
