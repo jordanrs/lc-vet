@@ -1,4 +1,4 @@
-# Django settings for Vet_Site project.
+# Django settings for vet_site project.
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -67,7 +67,7 @@ STATIC_URL = '/static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
-                    'C:/Users/Emma/Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/Vet_Site/static',
+                    'C:/Users/Emma/Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/vet_site/static',
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -91,6 +91,7 @@ TEMPLATE_LOADERS = (
 #     'django.template.loaders.eggs.Loader',
 )
 
+
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -101,18 +102,15 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'Vet_Site.urls'
+ROOT_URLCONF = 'vet_site.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'Vet_Site.wsgi.application'
+WSGI_APPLICATION = 'vet_site.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    'C:/Users/Emma/Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/Vet_Site/templates',
-    'C:/Users/Emma/My Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/search/templates',
-    'C:/Users/Emma/My Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/coltrane/templates',
 )
 
 INSTALLED_APPS = (
@@ -128,7 +126,8 @@ INSTALLED_APPS = (
      
      'search',
      'coltrane',
-     'course_info',
+     'vet_site.course_info',
+     'vet_site.nav',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
