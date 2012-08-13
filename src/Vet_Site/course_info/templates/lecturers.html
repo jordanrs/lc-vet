@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% load vet_site_tags %}
+
+{% block nav %}
+    {% nav_list course_slug %}
+{% endblock %}
+
+{% block content %}
+
+    {% for lecturer in lecturers %}
+        <p><a href="{{lecturer.get_absolute_url}}"> {{lecturer}}</a></p>
+    {% endfor %}
+
+{% endblock %}
+
+

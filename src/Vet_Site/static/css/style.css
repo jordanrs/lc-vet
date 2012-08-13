@@ -1,0 +1,36 @@
+/* Main body css */
+		#wrapper {
+			width: 960px;
+			margin: 0px auto;
+		}
+		#header {
+			width: 100%;
+			float: left;
+			height: 100px;
+			border: 1px solid red;
+		}
+		#main {
+			width: 100%;
+			float: left;
+			border: 1px solid red;
+			
+		}
+		#footer{
+			width: 100%;
+			float: left;
+			border: 1px solid red;
+		    height: 100px;
+		}
+		#navigation{
+			width: 25%;
+			float: left;
+			border: 1px solid blue;
+		}
+		#content{
+			width: 74.5%;
+			float: left;
+			border: 1px solid blue;
+		}
+		.start-hidden{
+			display: none;
+		}

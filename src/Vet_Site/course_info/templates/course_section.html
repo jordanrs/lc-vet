@@ -1,0 +1,75 @@
+
+
+
+{% extends "base.html" %}
+
+{% load vet_site_tags %}
+
+{%block nav%}
+    {% nav_list course_section_slug %}
+{% endblock %}
+
+{% block content %}
+<h1>{{course}} - {{course_section}}</h1>
+
+<p>{{course_section.description}}</p>
+
+<h3>Taught By</h3>
+<ul>
+    {% for lecturer in course_section.lecturers.all %}
+       <a href="{{lecturer.get_absolute_url}}">{{lecturer}}</a>
+    {% endfor %}
+</ul>
+<h3>Tips</h3>
+<p>{{course_section.tips}}</p>
+<h2 class="start-hidden" id="useful-material">Useful Material</h2>
+<div id="section-lectures-container" class="start-hidden">
+<h3>Lectures</h3>
+    <ul id="section-lectures">
+    </ul>
+ </div>   
+<div id="section-images-container" class="start-hidden">    
+<h3>Images</h3>    
+    <ul id="section-images">
+    </ul>
+ </div>   
+<div id="section-essays-container" class="start-hidden">  
+<h3>Essays</h3>    
+    <ul id="section-essay">
+    </ul>
+  </div>  
+<div id="section-notes-container" class="start-hidden">    
+<h3>Notes</h3>    
+    <ul id="section-note">
+    </ul>
+ </div>   
+{% endblock %}
+
+{% block dom_ready_scripts %}
+{% comment  %}<script>{% endcomment  %}
+
+     {% for file in course_section.coursefile_set.all %}
+       {% if file.type == 2 %}     
+         $("#useful-material").css('display', 'block')
+         $("#section-image-container").css('display', 'block')
+         $("#section-image").append('<li><a href="{{file.get_absolute_url}}">{{file}}</a></li>')
+       {% endif %}
+       {% if file.type == 3 %}  
+         $("#useful-material").css('display', 'block')
+         $("#section-lectures-container").css('display', 'block')   
+         $("#section-lectures").append('<li><a href="{{file.get_absolute_url}}">{{file}}</a></li>')
+       {% endif %}            
+       {% if file.type == 4 %} 
+         $("#useful-material").css('display', 'block')
+         $("#section-note-container").css('display', 'block')    
+         $("#section-note").append('<li><a href="{{file.get_absolute_url}}">{{file}}</a></li>')
+       {% endif %}
+       {% if file.type == 5 %} 
+         $("#useful-material").css('display', 'block')
+         $("#section-essay-container").css('display', 'block')    
+         $("#section-essay").append('<li><a href="{{file.get_absolute_url}}">{{file}}</a></li>')
+       {% endif %}       
+     {% endfor %}
+
+{% comment  %}</script>{% endcomment  %}
+{% endblock %}

@@ -1,0 +1,48 @@
+
+
+
+
+{% extends "base.html" %}
+
+{% load vet_site_tags %}
+
+{% block nav %}
+    {% nav_list course_slug %}
+{% endblock %}
+
+{% block content %}
+<div id="course-info">
+	<h1>{{course}}</h1>
+	<p>{{course.get_study_year_display}} - {{course.get_term_display}}</p>
+	<p>{{course.get_school_display}}</p>
+	<p>{{course.get_difficulty_display}}</p>
+</div>
+<div id="course-description">
+	<h2>Description</h2>
+	{{course.description}}
+</div>
+
+<div id="course-sections">
+	<h2>Course Sections</h2>
+	<ul>
+	{% for coursesection in course.coursesection_set.all %}
+	   <li><a href="{{coursesection.get_absolute_url}}">{{coursesection}}</a></li>
+	{% endfor %}
+	</ul>
+</div>
+
+<div id="course-past-papers">
+	<h2>Past Papers</h2>
+	<ul>
+	 {% for file in course.coursefile_set.all %}
+	   {% if file.type == 1 %}	   
+	      <li><a href="{{file.get_absolute_url}}">{{file}}</a></li>
+	   {% endif %}
+	 {% endfor %}
+	 </ul>
+</div>
+{{course}}&nbsp;    {{year}}
+
+{{course_slug}} {{course_section}}  jasjdlkajsdlkj
+
+{% endblock %}

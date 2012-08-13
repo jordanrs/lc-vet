@@ -1,0 +1,17 @@
+
+ul, li
+{
+    list-style-type: none;
+}
+
+li img {
+	cursor: pointer;
+}
+
+.sections, .courses-year {
+	display: none;
+}
+
+#nav  {
+	display: block;
+}
