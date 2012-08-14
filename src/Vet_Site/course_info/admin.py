@@ -63,7 +63,12 @@ class CourseAdmin(admin.ModelAdmin):
 #        return super(CourseAdmin, self).get_form(request, obj, **kwargs)    
        
 class LecturerAdmin(admin.ModelAdmin):
-    prepopulated_fields = {"slug": ("name",)}
+    
+    fieldsets= (
+                (None, {'fields': [("title", "first_name", "surname",), "age", "teaching", "description", "image", "slug"]}),
+                
+    )
+    prepopulated_fields = {"slug": ("first_name", "surname",)}
     
 
 admin.site.register(Course, CourseAdmin)

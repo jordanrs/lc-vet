@@ -7,6 +7,22 @@
 {% endblock %}
 
 {% block content %}
-
-{{lecturer}} &nbsp; {{lecturer.description}} &nbsp; {{nav_list}}
+	<h1>{{lecturer_info}}</h1>
+	
+	{% if lecturer_info.image %}
+	    <img src="{{lecturer_info.image}}" />
+	{% endif %}
+	
+	{{lecturer_info.age}}
+	<p>Teaching style: {{lecturer_info.get_teaching_display}}</p>
+	<p>{{lecturer_info.description}}</p>
+	
+	{% if lecturer_info.coursesection_set.all %}
+	<h2>Teaches</h2>
+	<ul>
+		{% for coursesection in lecturer_info.coursesection_set.all %}
+		  <li>  <a href="{{coursesection.course.get_absolute_url}}">{{coursesection.course}}</a> - <a href="{{coursesection.get_absolute_url}}">{{coursesection}}</a>   </li>    
+		{% endfor %}
+	</ul>
+	{% endif %}
 {% endblock %}

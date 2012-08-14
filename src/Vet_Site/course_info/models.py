@@ -19,7 +19,25 @@ class Lecturer(models.Model):
               (EXCELLENT_TEACHING, 'Excellent')
               )
     
-    name = models.CharField(max_length=255)
+    DR = 0
+    PROF = 1
+    MR = 2
+    MISS = 3
+    MRS = 4
+    MS = 5
+    
+    TITLES = (
+              (DR, "Dr."),
+              (PROF, "Prof."),
+              (MR, "Mr"),
+              (MISS, "Miss"),
+              (MRS, "Mrs"),
+              (MS, "Ms")
+              )
+    
+    title = models.IntegerField(choices = TITLES)
+    first_name = models.CharField(max_length=255)
+    surname = models.CharField(max_length=255)
     age = models.IntegerField(blank=True, null = True)
     teaching = models.IntegerField(choices=TEACHING_SCALE, help_text = "How good or bad the teaching was")
     description = models.TextField(blank=True)
@@ -28,13 +46,13 @@ class Lecturer(models.Model):
 # needs pil installing 
         
     def __unicode__(self):
-        return self.name    
+        return "{0} {1} {2}".format(self.TITLES[self.title][1], self.first_name, self.surname)    
     
     def get_absolute_url(self):
         return "/lecturers/{0}/".format(self.slug)
     
     class Meta:
-        ordering = ['name']
+        ordering = ['surname']
         
         
 class Course(models.Model):

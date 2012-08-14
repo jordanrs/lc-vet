@@ -1,7 +1,14 @@
 /* Main body css */
+		body {
+			background-color: #CCCCCC;
+			margin: 0px;
+		}
 		#wrapper {
-			width: 960px;
+			width: 900px;
 			margin: 0px auto;
+			background-color: #ffffff;
+			overflow: hidden;
+			
 		}
 		#header {
 			width: 100%;

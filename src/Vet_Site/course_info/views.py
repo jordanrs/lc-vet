@@ -30,4 +30,5 @@ def lecturers(request):
 
 def lecturer_detail(request, lecturer):
     lecturer_info = get_object_or_404(Lecturer, slug = lecturer)
+   
     return render_to_response("lecturer_detail.html", locals(), context_instance=RequestContext(request))

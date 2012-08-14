@@ -10,7 +10,8 @@
 {% endblock %}
 
 {% block content %}
-<h1>{{course}} - {{course_section}}</h1>
+<h1>{{course_section}}</h1>
+<h2>Part of <a href="{{course.get_absolute_url}}">{{course}}</a></h2>
 
 <p>{{course_section.description}}</p>
 

@@ -8,6 +8,7 @@
 
 {% block content %}
 
+
     {% for lecturer in lecturers %}
         <p><a href="{{lecturer.get_absolute_url}}"> {{lecturer}}</a></p>
     {% endfor %}
