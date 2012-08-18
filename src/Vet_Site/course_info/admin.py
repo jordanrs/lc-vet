@@ -1,4 +1,5 @@
 from django.contrib import admin
+from django.conf import settings
 from vet_site.course_info.models import *
 
 class CourseSectionInline(admin.StackedInline):
@@ -65,11 +66,34 @@ class CourseAdmin(admin.ModelAdmin):
 class LecturerAdmin(admin.ModelAdmin):
     
     fieldsets= (
-                (None, {'fields': [("title", "first_name", "surname",), "age", "teaching", "description", "image", "slug"]}),
+                (None, {'fields': [("title", "first_name", "surname",),("gender", "age"), "teaching", "description", "image", "slug"]}),
                 
     )
     prepopulated_fields = {"slug": ("first_name", "surname",)}
+    list_display = ('title', 'first_name', 'surname', 'age','num_course_taught', 'image_thumbnail')
+    list_display_links = ('title', 'first_name', 'surname', 'age',)
     
+    def num_course_taught(self, obj):
+        total = obj.coursesection_set.all()
+        return total.__len__()
+    num_course_taught.short_description = "No. Sections Taught"
+    
+    def image_thumbnail(self, obj):
+        return '<img src="{0}{1}" height="75" />'.format(settings.MEDIA_URL ,obj.image)
+    
+    image_thumbnail.short_description = "Image"
+    image_thumbnail.allow_tags = True
 
+class InfoSettingAdmin(admin.ModelAdmin):
+    fields = ("key", "value")
+    list_display = ("key", "value")
+    list_editable = ("value",)
+    
+class ClassRepAdmin(admin.ModelAdmin):
+    list_display = ("name", "school", "year", "email")
+    order_by = ("school", "year")
+
+admin.site.register(ClassRep, ClassRepAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lecturer, LecturerAdmin)
+admin.site.register(InfoSetting, InfoSettingAdmin)

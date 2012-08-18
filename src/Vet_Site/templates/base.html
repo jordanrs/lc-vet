@@ -1,3 +1,4 @@
+{% load vet_site_tags %}
 <html>
 
 	<head>
@@ -12,21 +13,26 @@
 		<div class="center">
 			<div id="wrapper">
 				<div id="header">
-					
+					{% if request.user.is_authenticated %}
+					    <a href="logout/">Log Out</a>
+					{% endif %}
 				</div>
 				<div id="main">
-					<div id="navigation">
-						{% block nav %}{% endblock %}
+					<div id="navigation">   
+						{% block nav %} {% nav_list "" %}{% endblock %}
 					</div>
 					<div id="content">
 						{% block content %}{% endblock %}
 					</div>
 				</div>
 				<div id="footer">
+					<p>Built for use by Lucy Cavendish College Vet and Medics students only.</p>
+					<p>Website and its content copyright to their repective owners</p>
+					<p>This website was built by Jordan Rogers-Smith</p>
 					
 				</div>
 			</div>
-        </div>
+       </div>
 		
 		<script>
 		$(document).ready(function () {

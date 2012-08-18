@@ -7,10 +7,25 @@
 {% endblock %}
 
 {% block content %}
-
-{% for course in courses %}
-    <p><a href="{{course.get_absolute_url}}">{{course }}</a></p>
-{% endfor %}
+    
+    <h1>Courses</h1>
+    <h2>Year 1</h2>
+    <ul id="courses-year-1"></ul> 
+    <h2>Year 2</h2>  
+    <ul id="courses-year-2"></ul>
+    <h2>Year 3</h2>  
+    <ul id="courses-year-3"></ul>
+    <h2>Year 4</h2>  
+    <ul id="courses-year-4"></ul>
+    <h2>Year 5</h2>  
+    <ul id="courses-year-5"></ul>
+    <h2>Year 6</h2>  
+    <ul id="courses-year-6"></ul>
+	{% for course in courses %}
+	   <script>
+	    $("#courses-year-{{course.study_year}}").append('<li><a href="{{course.get_absolute_url}}">{{ course.get_school_based_name }}</a></li>')
+	   </script>
+	{% endfor %}
 
 {% endblock %}
 

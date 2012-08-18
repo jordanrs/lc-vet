@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load vet_site_tags %}
+{% block nav %}
+    {% nav_list "" %}
+{% endblock %}
+
+{% block content %}
+
+{% if not user.is_active %}
+    not active
+{% endif %}
+
+{% if form.errors %}
+<p class="error">Sorry, that's not a valid username or password</p>
+{% endif %}
+<p>Please login using the form below or register</p>
+<form action='.' method='post'>
+	{% csrf_token %}
+<label for="username">User name:</label>
+<input type="text" name="username" value="" id="username">
+<label for="password">Password:</label>
+<input type="password" name="password" value="" id="password">
+<input type="submit" value="login" />
+<input type="hidden" name="next" value="/courses/" />
+<form action='.' method='post'>
+<p><a href="/register/">Register here</a></p>
+	
+	
+{% endblock %}

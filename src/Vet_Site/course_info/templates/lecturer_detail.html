@@ -9,9 +9,9 @@
 {% block content %}
 	<h1>{{lecturer_info}}</h1>
 	
-	{% if lecturer_info.image %}
-	    <img src="{{lecturer_info.image}}" />
-	{% endif %}
+	
+	    <img src="{{MEDIA_URL}}{{lecturer_info.image}}" />
+	
 	
 	{{lecturer_info.age}}
 	<p>Teaching style: {{lecturer_info.get_teaching_display}}</p>

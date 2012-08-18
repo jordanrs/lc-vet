@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% load vet_site_tags %}
+ 
+{% block nav %}
+    {% nav_list "" %}
+{% endblock %}
+
+{% block content %}
+<h1>Information</h1>
+<h2>Vets Class Representitives</h2>
+   {% for vet_rep in vet_reps %}
+ <p>{{vet_rep.get_year_display}} - {{vet_rep.name}} - {{vet_rep.email}} </p>
+{% endfor %}
+
+<h2>Medics Class Representitives</h2>
+{% for medic_rep in medic_reps %}
+   <p>{{medic_rep.get_year_display}} - {{ medic_rep.name}} - {{medic_rep.email}}</p>
+{% endfor %}
+    
+ <h2>Address</h2>   
+   <p> Lucy Cavendish College</p>
+                 <p>Tel:   {{LC_TELEPHONE}}</p> 
+                  
+    <p>For technical support or design feedback email {{TECHNICAL_SUPPORT}}</p>
+{% endblock %}
+

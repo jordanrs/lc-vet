@@ -1,5 +1,7 @@
 from django.conf.urls import patterns, include, url
-import vet_site.course_info
+from django.conf import settings
+from django.contrib.auth.views import login, logout
+from django.conf.urls.defaults import *
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -35,13 +37,56 @@ urlpatterns += patterns('vet_site.course_info.views',
      #lecturer
      (r'^lecturers/$', 'lecturers'),
      (r'^lecturers/(?P<lecturer>[-\w]+)/$', 'lecturer_detail'),
+     (r'^info/$', 'info'),
+     (r'^register/$', 'register'),
 )
 
+if settings.DEBUG:
+    urlpatterns += patterns('',
+        (r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT}),
+    )
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+urlpatterns += staticfiles_urlpatterns()
+
+urlpatterns += patterns('',
+    (r'^login/$', login),
+    (r'^logout/$', logout, {"next_page" :"/"}) ,              
+    )
+
+urlpatterns += patterns('',
+                     
+                       (r'^password_change/$', 
+                        'django.contrib.auth.views.password_change', 
+                        {'template_name': 'accounts/password_change_form.html'}),
+
+                       (r'^password_change/done/$', 
+                        'django.contrib.auth.views.password_change_done', 
+                        {'template_name': 'accounts/password_change_done.html'}),
+
+                       (r'^password_reset/$', 
+                        'django.contrib.auth.views.password_reset', 
+                        {'template_name': 'accounts/password_reset_form.html',}),
+
+                       (r'^password_reset/done/$', 
+                        'django.contrib.auth.views.password_reset_done', 
+                        {'template_name': 'accounts/password_reset_done.html'}),
+
+                       (r'^reset/(?P<uidb36>[0-9A-Za-z]+)-(?P<token>.+)/$', 
+                        'django.contrib.auth.views.password_reset_confirm', 
+                        {'template_name': 'accounts/password_reset_confirm.html'}),
+
+                       (r'^reset/done/$', 
+                        'django.contrib.auth.views.password_reset_complete', 
+                        {'template_name': 'accounts/password_reset_complete.html'}),
+
+)
+
+#EVERYTHIN MUST BE ABOVE THIS
 urlpatterns += patterns('', 
       #catch all for flat pages
      (r'', include('django.contrib.flatpages.urls')),
 )
 
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-urlpatterns += staticfiles_urlpatterns()
+
 

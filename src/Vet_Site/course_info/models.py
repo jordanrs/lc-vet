@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.models import User
+import Image
 
 # Create your models here.
 
@@ -35,15 +37,23 @@ class Lecturer(models.Model):
               (MS, "Ms")
               )
     
+    MALE = 0
+    FEMALE = 1
+    
+    GENDER = (
+              (MALE, "Male"),
+              (FEMALE, "Female"),
+              )
+    
     title = models.IntegerField(choices = TITLES)
+    gender = models.IntegerField(choices = GENDER)
     first_name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
     age = models.IntegerField(blank=True, null = True)
     teaching = models.IntegerField(choices=TEACHING_SCALE, help_text = "How good or bad the teaching was")
     description = models.TextField(blank=True)
     slug = models.SlugField(unique = True, help_text = "Prepopulated from name, must be unique")
-    image = models.ImageField(upload_to="lecturer_images", blank=True)       
-# needs pil installing 
+    image = models.ImageField(upload_to="uploads/lecturer_images/", blank=True, help_text="Please upload square images of at least 175px x 175px otherwise they will just look bad")       
         
     def __unicode__(self):
         return "{0} {1} {2}".format(self.TITLES[self.title][1], self.first_name, self.surname)    
@@ -51,9 +61,33 @@ class Lecturer(models.Model):
     def get_absolute_url(self):
         return "/lecturers/{0}/".format(self.slug)
     
+    def save(self, *args, **kwargs):
+        if self.image == "":
+            if self.gender == self.MALE:
+                self.image = "uploads/lecturer_images/male_silhouette.png"
+            elif self.gender == self.FEMALE:
+                self.image = "uploads/lecturer_images/female_silhouette.png"
+
+        super(Lecturer, self).save()
+    
     class Meta:
         ordering = ['surname']
         
+FIRST_YEAR = 1
+SECOND_YEAR = 2
+THIRD_YEAR = 3
+FOURTH_YEAR = 4
+FIFTH_YEAR = 5
+SIXTH_YEAR = 6
+
+YEARS = (
+         (FIRST_YEAR, '1st Year'),
+         (SECOND_YEAR, '2nd Year'),
+         (THIRD_YEAR, '3rd Year'),
+         (FOURTH_YEAR, '4th Year'),
+         (FIFTH_YEAR, '5th Year'),
+         (SIXTH_YEAR, '6th Year')
+         )
         
 class Course(models.Model):
     
@@ -79,20 +113,7 @@ class Course(models.Model):
          (THIRD_TERM, '3rd Term')         
          )
 
-    FIRST_YEAR = 1
-    SECOND_YEAR = 2
-    THIRD_YEAR = 3
-    FOURTH_YEAR = 4
-    FIFTH_YEAR = 5
-    SIXTH_YEAR = 6
-    YEARS = (
-             (FIRST_YEAR, '1st Year'),
-             (SECOND_YEAR, '2nd Year'),
-             (THIRD_YEAR, '3rd Year'),
-             (FOURTH_YEAR, '4th Year'),
-             (FIFTH_YEAR, '5th Year'),
-             (SIXTH_YEAR, '6th Year')
-             )
+
     
     VERY_EASY = 1
     EASY = 2
@@ -123,6 +144,9 @@ class Course(models.Model):
     
     def get_absolute_url(self):
         return "/courses/year-{0}/{1}/".format(self.study_year, self.slug)
+    
+    def get_school_based_name(self):
+        return "{0} ({1})".format(self.name, self.SCHOOLS[self.school - 1][1][0])
     
     class Meta:
         ordering = ['study_year', 'term']
@@ -176,3 +200,38 @@ class CourseFile(models.Model):
     class Meta:
         verbose_name = "Course File"
         verbose_name_plural = "Course Files"
+        
+class InfoSetting(models.Model):
+    key = models.CharField(max_length = 255, help_text="DO NOT CHANGE THIS VALUE")
+    value = models.CharField(max_length = 255)
+    
+    def __unicode__(self):
+        return "{0} settings".format("key")
+    
+    class Meta:
+        verbose_name = "Settings"
+        verbose_name_plural = "Settings"
+
+## Write vet reps model     
+
+VET_SCHOOL = 1
+MED_SCHOOL = 2
+
+SCHOOL_TYPES = (
+           (VET_SCHOOL, "Vet School"),
+           (MED_SCHOOL, "Med School"),       
+           )
+
+class ClassRep(models.Model):   
+    name = models.CharField(max_length = 255)
+    school = models.IntegerField(choices = SCHOOL_TYPES)
+    email = models.EmailField()
+    year = models.IntegerField(choices=YEARS)
+    
+    def __unicode__(self):
+        return self.name
+    
+class UserProfile(models.Model):
+    user = models.OneToOneField(User)
+    activation_key = models.CharField(max_length=40)
+    key_expires = models.DateTimeField()

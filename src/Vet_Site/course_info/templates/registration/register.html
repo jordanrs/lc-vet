@@ -1,0 +1,48 @@
+
+{% extends "base.html" %}
+{% load vet_site_tags %}
+{% block nav %}
+    {% nav_list "" %}
+{% endblock %}
+
+{% block content %}
+
+{% if form.errors %}
+<p class="error">Sorry, that's not a valid username or password</p>
+{% endif %}
+<p>Please register using the form below</p>
+<form method="POST" action="/register/">
+    {% csrf_token %}
+        {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.username.errors }}
+        <label for="id_username">Username</label>
+        {{ form.username }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.email.errors }}
+        <label for="id_email">Cambridge University Email</label>
+        {{ form.email }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.password1.errors }}
+        <label for="id_password1">Password</label>
+        {{ form.password1 }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.password2.errors }}
+        <label for="id_password2">Confirm Password</label>
+        {{ form.password2 }}
+    </div>
+        <div class="fieldWrapper">
+        {{ form.key.errors }}
+        <label for="id_key">Sign up key</label>
+        {{ form.key }}
+    </div>
+
+    <input type="submit">
+</form>
+
+    
+    
+{% endblock %}

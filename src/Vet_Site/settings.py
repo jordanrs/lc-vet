@@ -48,7 +48,7 @@ USE_TZ = True
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = 'C:/Users/Emma/My Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/vet_site/course_info/media'
+MEDIA_ROOT = 'C:/Users/Emma/My Documents/Aptana Studio 3 Workspace/Emma Website/EmmaVet/src/vet_site/course_info/media/'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -109,6 +109,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.static',
     'django.contrib.auth.context_processors.auth',
     'django.contrib.messages.context_processors.messages',
+    
+    'vet_site.course_info.context_processor.common',
 )
 
 ROOT_URLCONF = 'vet_site.urls'
@@ -138,10 +140,18 @@ INSTALLED_APPS = (
      'vet_site',
      'vet_site.course_info',
      'vet_site.nav',
+     'south',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
-                    
+
+AUTH_PROFILE_MODULE = "vet_site.course_info.UserProfile" 
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'lcvetmeds@gmail.com'
+EMAIL_HOST_PASSWORD = 'lcvmchamo07'
+EMAIL_PORT = 587
+DEFAULT_FROM_EMAIL = 'webmaster@localhost'                
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
