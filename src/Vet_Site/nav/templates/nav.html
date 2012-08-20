@@ -1,7 +1,7 @@
 {% load static %}
   
-<p><a href="/">Home</a></p>
-<p><a href="/courses/">Courses</a></p>
+<p class="link"><a href="/">Home</a></p>
+<p class="link"><a href="/courses/">Courses</a></p>
 <ul id="nav">
 {% for year in years %}
     <li id="year-{{forloop.counter}}"><img class="expander" src="{% get_static_prefix %}img/expand.gif" />Year {{forloop.counter}}</li>
@@ -11,14 +11,14 @@
          <li id="{{course.slug}}"><img class="expander" src="{% get_static_prefix %}img/expand.gif" /><a href="{{course.get_absolute_url}}">{{course.name}} (B)</a></li>
         <ul class="sections">
 	        {% for section in course.coursesection_set.all %}
-	            <li id="{{section.slug}}"><a href="{{section.get_absolute_url}}">{{section}}</a></li>
+	            <li id="{{section.slug}}"><img src="{% get_static_prefix %}img/arrow.gif" /><a href="{{section.get_absolute_url}}">{{section}}</a></li>
 	        {% endfor %}
 	   </ul>
 	     {% elif course.school == 2 %}
          <li id="{{course.slug}}"><img class="expander" src="{% get_static_prefix %}img/expand.gif" /><a href="{{course.get_absolute_url}}">{{course.name}} (V)</a></li>
         <ul  class="sections">
             {% for section in course.coursesection_set.all %}
-                <li id="{{section.slug}}"><a href="{{section.get_absolute_url}}">{{section}}</a></li>
+                <li id="{{section.slug}}"><img src="{% get_static_prefix %}img/arrow.gif" /><a href="{{section.get_absolute_url}}">{{section}}</a></li>
             {% endfor %}
        </ul>	     
 	     
@@ -26,7 +26,7 @@
          <li id="{{course.slug}}"><img class="expander" src="{% get_static_prefix %}img/expand.gif" /><a href="{{course.get_absolute_url}}">{{course.name}} (M)</a></li>
         <ul  class="sections">
             {% for section in course.coursesection_set.all %}
-                <li id="{{section.slug}}"><a href="{{section.get_absolute_url}}">{{section}}</a></li>
+               <li id="{{section.slug}}"><img src="{% get_static_prefix %}img/arrow.gif" /><a href="{{section.get_absolute_url}}">{{section}}</a></li>
             {% endfor %}
        </ul>	     
 	     
@@ -35,12 +35,14 @@
     {% endfor %}
     </ul>
 {% endfor %}
-<p>(B) - Both Schools</p>
-<p>(V) - Vet Students Only</p>
-<p>(M) - Medical Students Only</p>
+<div id="nav-initials">
+	<p>(B) - Both Schools</p>
+	<p>(V) - Vet Students Only</p>
+	<p>(M) - Medical Students Only</p>
+</div>
 </ul>
-<p><a href="/lecturers/">Lecturers</a></p>
-<p><a href="/info/">Info</a></p>
+<p class="link"><a href="/lecturers/">Lecturers</a></p>
+<p class="link"><a href="/info/">Info</a></p>
 
 
 <script>

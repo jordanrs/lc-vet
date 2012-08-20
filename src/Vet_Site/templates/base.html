@@ -13,9 +13,13 @@
 		<div class="center">
 			<div id="wrapper">
 				<div id="header">
-					{% if request.user.is_authenticated %}
-					    <a href="logout/">Log Out</a>
-					{% endif %}
+					<img src="{{STATIC_URL}}img/lc_logo.jpg" height="99"/>
+					<div id="auth-links">
+						{% if request.user.is_authenticated %}
+						    <a href="/password_change/">Change Password</a>
+						    <a href="accounts/logout/">Log Out</a>
+						{% endif %}
+					</div>
 				</div>
 				<div id="main">
 					<div id="navigation">   
@@ -26,7 +30,7 @@
 					</div>
 				</div>
 				<div id="footer">
-					<p>Built for use by Lucy Cavendish College Vet and Medics students only.</p>
+					<p>Built for use by Lucy Cavendish College Vet and Medic students only.</p>
 					<p>Website and its content copyright to their repective owners</p>
 					<p>This website was built by Jordan Rogers-Smith</p>
 					

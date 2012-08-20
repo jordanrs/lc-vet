@@ -13,9 +13,7 @@
 {% block content %}
 <div id="course-info">
 	<h1>{{course}}</h1>
-	<p>{{course.get_study_year_display}} - {{course.get_term_display}}</p>
-	<p>{{course.get_school_display}}</p>
-	<p>{{course.get_difficulty_display}}</p>
+	<p>{{course.get_study_year_display}} - {{course.get_term_display}} | School - {{course.get_school_display}} | Difficulty - {{course.get_difficulty_display}}</p>
 </div>
 <div id="course-description">
 	<h2>Description</h2>

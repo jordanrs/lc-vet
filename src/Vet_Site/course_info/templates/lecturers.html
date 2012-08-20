@@ -8,11 +8,12 @@
 
 {% block content %}
 
-    <h1>Lecturers</h1>
+    <h1>Lecturers List</h1>
+    <ul>
     {% for lecturer in lecturers %}
-        <p><a href="{{lecturer.get_absolute_url}}"> {{lecturer}}</a></p>
+        <li><p><a href="{{lecturer.get_absolute_url}}"> {{lecturer}}</a></p></li>
     {% endfor %}
-
+    </ul>
 {% endblock %}
 
 

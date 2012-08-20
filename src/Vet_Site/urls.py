@@ -50,8 +50,8 @@ from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 urlpatterns += staticfiles_urlpatterns()
 
 urlpatterns += patterns('',
-    (r'^login/$', login),
-    (r'^logout/$', logout, {"next_page" :"/"}) ,              
+    (r'^accounts/login/$', login),
+    (r'^accounts/logout/$', logout, {"next_page" :"/"}) ,              
     )
 
 urlpatterns += patterns('',

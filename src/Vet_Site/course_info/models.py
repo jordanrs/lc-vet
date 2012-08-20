@@ -21,6 +21,15 @@ class Lecturer(models.Model):
               (EXCELLENT_TEACHING, 'Excellent')
               )
     
+    AGE = (
+           (0, "20-30"),
+           (1, "30-40"),
+           (2, "40-50"),
+           (3, "50-60"),
+           (4, "60-70"),
+           (5, "70+")
+           )
+    
     DR = 0
     PROF = 1
     MR = 2
@@ -49,7 +58,7 @@ class Lecturer(models.Model):
     gender = models.IntegerField(choices = GENDER)
     first_name = models.CharField(max_length=255)
     surname = models.CharField(max_length=255)
-    age = models.IntegerField(blank=True, null = True)
+    age = models.IntegerField(choices = AGE, blank=True, null = True)
     teaching = models.IntegerField(choices=TEACHING_SCALE, help_text = "How good or bad the teaching was")
     description = models.TextField(blank=True)
     slug = models.SlugField(unique = True, help_text = "Prepopulated from name, must be unique")

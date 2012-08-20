@@ -9,20 +9,24 @@
 {% block content %}
 	<h1>{{lecturer_info}}</h1>
 	
+	<div id="lecturer-image">
+     <img src="{{MEDIA_URL}}{{lecturer_info.image}}" />
+	</div>
 	
-	    <img src="{{MEDIA_URL}}{{lecturer_info.image}}" />
-	
-	
-	{{lecturer_info.age}}
-	<p>Teaching style: {{lecturer_info.get_teaching_display}}</p>
-	<p>{{lecturer_info.description}}</p>
-	
-	{% if lecturer_info.coursesection_set.all %}
-	<h2>Teaches</h2>
-	<ul>
-		{% for coursesection in lecturer_info.coursesection_set.all %}
-		  <li>  <a href="{{coursesection.course.get_absolute_url}}">{{coursesection.course}}</a> - <a href="{{coursesection.get_absolute_url}}">{{coursesection}}</a>   </li>    
-		{% endfor %}
-	</ul>
-	{% endif %}
+	<div id="lecturer-details">
+		<p>Age - {{lecturer_info.age}}</p>
+		<p>Teaching style: {{lecturer_info.get_teaching_display}}</p>
+	</div>
+	<div id="lecturer-coursesection">
+		<h2>Description</h2>
+		<p>{{lecturer_info.description}}</p>
+		{% if lecturer_info.coursesection_set.all %}
+		<h2>Teaches</h2>
+		<ul>
+			{% for coursesection in lecturer_info.coursesection_set.all %}
+			  <li>  <a href="{{coursesection.course.get_absolute_url}}">{{coursesection.course}}</a> - <a href="{{coursesection.get_absolute_url}}">{{coursesection}}</a>   </li>    
+			{% endfor %}
+		</ul>
+		{% endif %}
+	</div>
 {% endblock %}

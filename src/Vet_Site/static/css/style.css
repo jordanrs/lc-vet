@@ -1,7 +1,13 @@
 /* Main body css */
+		*{
+			font-family: Arial, Helvetica, sans-serif;
+		}
 		body {
 			background-color: #CCCCCC;
 			margin: 0px;
+		}
+		#header, #main, #content, #nav {
+			font-size: 12px;
 		}
 		#wrapper {
 			width: 900px;
@@ -14,30 +20,91 @@
 			width: 100%;
 			float: left;
 			height: 100px;
-			border: 1px solid red;
+			position: relative;
+			text-align: center;
 		}
 		#main {
 			width: 100%;
 			float: left;
-			border: 1px solid red;
+			
 			
 		}
 		#footer{
 			width: 100%;
 			float: left;
-			border: 1px solid red;
+			
 		    height: 100px;
+		    font-size: 8px;
+		    text-align: center;
 		}
 		#navigation{
 			width: 25%;
 			float: left;
-			border: 1px solid blue;
+			border-right: 1px solid gray;
 		}
+		
 		#content{
-			width: 74.5%;
+			padding-left: 10px;
 			float: left;
-			border: 1px solid blue;
+			
 		}
 		.start-hidden{
 			display: none;
 		}
+		
+		form *{
+			    -moz-border-radius:4px;
+   				 -webkit-border-radius:4px
+		}
+		
+		#nav-initials {
+			margin-top: 10px;
+			
+		}
+		
+		#nav-initials p {
+			font-size:8px;
+			padding: 0px;
+			margin: 0px;
+		}
+		
+		#auth-links{
+			position: absolute;
+			bottom: 0;
+			right:0;
+		}
+		
+		.link {
+			padding-left:5px;
+		}
+		
+		#lecturer-details {
+			float: left;
+			overflow: hidden;
+		}
+		
+		#lecturer-image {
+			float: left;
+			overflow: hidden;
+		}
+		
+		#lecturer-coursesection {
+			width: 100%;
+			float: left;
+		}
+		
+		#register-form label, #login-form label, #password-change-form label, #password-reset-confirm label {
+			width: 150px;
+			float: left;
+			text-align: left;
+			margin-right: 0.5em;
+			display: block
+		}
+		
+		 #login-form label {
+		 	width: 62px;
+		 }
+		 
+		 #password-change-form {
+		 	
+		 }

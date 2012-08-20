@@ -17,13 +17,9 @@
 <h1>Welcome to Lucy Cavendish vet school</h1>
 
 {% if request.user.is_authenticated %}
-    please use the navigation on the top and bottom to select where you would like to go  
+    Please use the navigation on the left to select where you would like to go  
 {% else %}
-   <p> If you have already registered please <a href="login/" >Log In</a></p>
-    
-   <p> If not please <a href="/register/" >Register</a></p>
-   
-   <p>If you have forgotten your password <a href="/password_reset/" >click here</a></p>
+{% include "snippets/login.html" %}
 {% endif %}
 
 
