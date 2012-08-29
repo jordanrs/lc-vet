@@ -1,3 +1,6 @@
 uploads
 *.pyc
 settings.py
+/src\vet_site/*.pyc
+/src\vet_site/*.pyc
+/src\vet_site/settings.py
