@@ -3,7 +3,22 @@ from django.contrib.auth.models import User
 import Image
 
 # Create your models here.
+DR = 0
+PROF = 1
+MR = 2
+MISS = 3
+MRS = 4
+MS = 5
 
+TITLES = (
+          (DR, "Dr."),
+          (PROF, "Prof."),
+          (MR, "Mr"),
+          (MISS, "Miss"),
+          (MRS, "Mrs"),
+          (MS, "Ms")
+          )
+    
 class Lecturer(models.Model):
     VERY_BAD_TEACHING = 1
     BAD_TEACHING = 2
@@ -29,22 +44,6 @@ class Lecturer(models.Model):
            (4, "60-70"),
            (5, "70+")
            )
-    
-    DR = 0
-    PROF = 1
-    MR = 2
-    MISS = 3
-    MRS = 4
-    MS = 5
-    
-    TITLES = (
-              (DR, "Dr."),
-              (PROF, "Prof."),
-              (MR, "Mr"),
-              (MISS, "Miss"),
-              (MRS, "Mrs"),
-              (MS, "Ms")
-              )
     
     MALE = 0
     FEMALE = 1
@@ -239,8 +238,17 @@ class ClassRep(models.Model):
     
     def __unicode__(self):
         return self.name
+
+class CollegeContact(models.Model):
+    title = models.IntegerField(choices = TITLES)
+    first_name = models.CharField(max_length = 150)
+    last_name = models.CharField(max_length = 150)
+    position = models.CharField(max_length = 255, blank = True)
+    email = models.EmailField()
+    tel = models.IntegerField()
     
 class UserProfile(models.Model):
     user = models.OneToOneField(User)
     activation_key = models.CharField(max_length=40)
     key_expires = models.DateTimeField()
+    

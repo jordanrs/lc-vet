@@ -91,9 +91,15 @@ class InfoSettingAdmin(admin.ModelAdmin):
     
 class ClassRepAdmin(admin.ModelAdmin):
     list_display = ("name", "school", "year", "email")
+    list_editable = ("email",)
     order_by = ("school", "year")
+
+class CollegeContactAdmin(admin.ModelAdmin):
+    list_display = ("title", "first_name", "last_name", "position", "email", "tel")
+    order_by = ("last_name",)
 
 admin.site.register(ClassRep, ClassRepAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lecturer, LecturerAdmin)
 admin.site.register(InfoSetting, InfoSettingAdmin)
+admin.site.register(CollegeContact, CollegeContactAdmin)

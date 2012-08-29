@@ -13,15 +13,13 @@
 
 {% block content %}
 
-
-<h1>Welcome to Lucy Cavendish vet school</h1>
-
-{% if request.user.is_authenticated %}
-    Please use the navigation on the left to select where you would like to go  
-{% else %}
-{% include "snippets/login.html" %}
-{% endif %}
-
+	<h1>Welcome to Lucy Cavendish Vets and Medics Society</h1>
+	
+	{% if request.user.is_authenticated %}
+	    Please use the navigation on the left to select where you would like to go  
+	{% else %}
+	    {% include "snippets/login.html" %}
+	{% endif %}
 
 {% endblock %}
 

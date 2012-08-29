@@ -141,6 +141,8 @@ INSTALLED_APPS = (
      'vet_site.course_info',
      'vet_site.nav',
      'south',
+     'vet_site.calender',
+     'tastypie',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )

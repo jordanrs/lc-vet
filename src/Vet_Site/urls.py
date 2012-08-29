@@ -22,9 +22,7 @@ urlpatterns = patterns('',
      
      # webblog stuff
      (r'^weblog/$', 'coltrane.views.entries_index'),
-     (r'^weblog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\w{2})/(?P<slug>[-\w]+)/$','coltrane.views.entry_detail'),
-          
-     
+     (r'^weblog/(?P<year>\d{4})/(?P<month>\w{3})/(?P<day>\w{2})/(?P<slug>[-\w]+)/$','coltrane.views.entry_detail'),    
 )
 
 urlpatterns += patterns('vet_site.course_info.views', 
@@ -37,7 +35,10 @@ urlpatterns += patterns('vet_site.course_info.views',
      #lecturer
      (r'^lecturers/$', 'lecturers'),
      (r'^lecturers/(?P<lecturer>[-\w]+)/$', 'lecturer_detail'),
-     (r'^info/$', 'info'),
+     
+     #other
+     (r'^contact/$', 'contact'),
+     url(r'^events/$', 'events', name = "events"),
      (r'^register/$', 'register'),
 )
 

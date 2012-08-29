@@ -18,6 +18,11 @@
    <p>{{medic_rep.get_year_display}} - {{ medic_rep.name}} - {{medic_rep.email}}</p>
 {% endfor %}
     
+<h2>Lucy Cavendish College Contacts</h2>    
+{% for college_contact in college_contacts %}
+    <p>{{college_contact.position}}</p>
+    <p>{{college_contact.get_title_display}} {{college_contact.first_name}} {{college_contact.last_name}} - {{college_contact.email}} - {{college_contact.tel}}</p>
+{% endfor %}
  <h2>Address</h2>   
    <p>Lucy Cavendish College, Lady Margaret Road, Cambridge, CB3 0BU </p>
                  <p>Tel:   {{LC_TELEPHONE}}</p> 

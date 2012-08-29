@@ -48,11 +48,16 @@ def lecturer_detail(request, lecturer):
     return render_to_response("lecturer_detail.html", locals(), context_instance=RequestContext(request))
 
 @login_required
-def info(request):
+def contact(request):
     info_settings = InfoSetting.objects.all()
     vet_reps = ClassRep.objects.filter(school = VET_SCHOOL).order_by("year")
     medic_reps = ClassRep.objects.filter(school = MED_SCHOOL).order_by("year")
-    return render_to_response("info.html", locals(), context_instance=RequestContext(request))
+    college_contacts = CollegeContact.objects.all()
+    return render_to_response("contact.html", locals(), context_instance=RequestContext(request))
+
+@login_required
+def events(request):
+    return render_to_response("events.html", locals(), context_instance=RequestContext(request))
 
 def register(request):
     if request.method == "POST":
