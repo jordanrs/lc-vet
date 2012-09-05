@@ -5,6 +5,7 @@ class Event (models.Model):
     start = models.DateTimeField()
     end = models.DateTimeField()
     color = models.CharField(max_length = 25)
+    description = models.TextField();
     
     def __unicode__(self):
         return self.title

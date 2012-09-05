@@ -17,6 +17,7 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
      url(r'^admin/', include(admin.site.urls)),
+     (r'', include('vet_site.calender.urls')),
      (r'^$', 'vet_site.course_info.views.index'),
      (r'^search/$', 'search.views.search'),
      

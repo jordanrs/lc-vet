@@ -57,7 +57,7 @@ def contact(request):
 
 @login_required
 def events(request):
-    return render_to_response("events.html", locals(), context_instance=RequestContext(request))
+    return render_to_response("calender.html", locals(), context_instance=RequestContext(request))
 
 def register(request):
     if request.method == "POST":
