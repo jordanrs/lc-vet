@@ -64,7 +64,7 @@ class Lecturer(models.Model):
     image = models.ImageField(upload_to="uploads/lecturer_images/", blank=True, help_text="Please upload square images of at least 175px x 175px otherwise they will just look bad")       
         
     def __unicode__(self):
-        return "{0} {1} {2}".format(self.TITLES[self.title][1], self.first_name, self.surname)    
+        return "{0} {1} {2}".format(TITLES[self.title][1], self.first_name, self.surname)    
     
     def get_absolute_url(self):
         return "/lecturers/{0}/".format(self.slug)
