@@ -9,37 +9,102 @@
 
 {% block content %}
 
-<p>Events coming soon lalala</p>
-<div id="calendar"></div>
 
-<div id="eventDialog" class='dialog ui-helper-hidden'>
-	<form>
-		<div>
-			<label>Title:</label>
-			<input id="title" class="field" type="text"></input>
-		</div>
-		<div>
+<div id="calendar"></div>
+    {% if  request.user.is_staff %}
+    <div id="eventDialog" class='dialog ui-helper-hidden'>
+    <form>
+        <div>
+            <label>Title:</label>
+            <input id="title" class="field" type="text" placeholder="Drinks At My House"></input>
+        </div>
+        <div>
+            <label>Start Time:</label>
+            <input id="start-time" class="field" type="datetime" placeholder="18:00:00"></input>
+            <p>Format 24 hours HH:MM:SS</p>
+        </div>
+        <div>
+            <label>Start Date:</label>
+            <input id="start-date" class="field" type="datetime" placeholder="DD-MM-YYYY"></input>
+            <p>Format DD-MM-YY</p>
+        </div>
+        <div>
+            <label>End Time:</label>
+            <input id="end-time" class="field" type="datetime" placeholder="22:00:00"></input>
+            <p>Format 24 hours HH:MM:SS</p>
+        </div>
+        <div>
+            <label>End Date:</label>
+            <input id="end-date" class="field" type="datetime" placeholder="DD-MM-YYYY"></input>
+            <p>Format DD-MM-YY</p>
+        </div>
+        <div>
             <label>Color:</label>
-            <input id="color" class="field" type="color"></input>			
-		</div>
-		<div>
+            <input id="color" class="field" type="color" placeholder="Red"></input>           
+        </div>
+        <div>
             <label>Description:</label>
-            <textarea id="description" name="description" rows="5" cols="30"></textarea>
-		</div>
-	</form>
+            <textarea id="description" name="description" rows="5" cols="30" placeholder="Were all going to get really drunk"></textarea>
+        </div>
+        <div id="hidden-fields">
+            <input id="timezone" class="field" type="hidden" ></input>    
+        </div>
+    </form>
 </div>
+    {% else %}
+    <div id="eventDialog" class='dialog ui-helper-hidden'>
+    <form>
+        <div>
+            <label>Title:</label>
+            <input id="title" class="field" type="text" disabled="disabled" ></input>
+        </div>
+        <div>
+            <label>Start Time:</label>
+            <input id="start-time" class="field" type="datetime" disabled="disabled" ></input>
+        </div>
+        <div>
+            <label>Start Date:</label>
+            <input id="start-date" class="field" type="datetime" disabled="disabled" ></input>
+        </div>
+        <div>
+            <label>End Time:</label>
+            <input id="end-time" class="field" type="datetime" disabled="disabled"></input>
+        </div>
+        <div>
+            <label>End Date:</label>
+            <input id="end-date" class="field" type="datetime" disabled="disabled"></input>
+        </div>
+        <div>
+            <label>Description:</label>
+            <textarea id="description" name="description" rows="5" cols="30" disabled="disabled"></textarea>
+        </div>
+    </form>
+</div>
+    {% endif %}
+{% if  request.user.is_staff %}
+<p>You can also create and edit events on the <a href="/admin/">Admin panel</a></p>
+{% endif %}
+
+
 {% endblock %}
 
 {% block scripts %}
+    <script src="{{STATIC_URL}}calender/js/util.js"></script>
     <script src="{{STATIC_URL}}calender/js/underscore-min.js"></script>
     <script src="{{STATIC_URL}}calender/js/backbone-min.js"></script>
     <script src="{{STATIC_URL}}calender/js/backbone-tastypie.js"></script>
     <script src="{{STATIC_URL}}calender/js/fullcalendar.js"></script>
+    {% if  request.user.is_staff %}
+    <script src="{{STATIC_URL}}calender/js/app-admin.js"></script>
+    {% else %}
     <script src="{{STATIC_URL}}calender/js/app.js"></script>
+    {% endif %}
     <script src="{{STATIC_URL}}calender/js/jquery-ui-1.8.23.custom.min.js"></script>
+    
 {% endblock %}
 
 {% block css %}
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}calender/css/fullcalendar.css" />
     <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}calender/css/jquery-ui-1.8.23.custom.css" />
+         <link rel="stylesheet" type="text/css" href="{{STATIC_URL}}calender/css/calendar.css" />
 {% endblock %}

@@ -8,6 +8,7 @@ class EventResource(ModelResource):
     class Meta:
         queryset = Event.objects.all()
         resource_name = 'events'
+        limit = 0;
         # authentication = SessionAuthentication()
         authentication = Authentication()
         authorization = DjangoAuthorization()

@@ -4662,7 +4662,8 @@ function DayEventRenderer() {
 					"</span>";
 			}
 			html +=
-				"<span class='fc-event-title'>" + htmlEscape(event.title) + "</span>" +
+				"<span class='fc-event-title'>"+ event.start.getHours() +":"+ zeroPad(event.start.getMinutes()) + 
+				" " + htmlEscape(event.title) + "</span>" +
 				"</div>";
 			if (seg.isEnd && isEventResizable(event)) {
 				html +=
