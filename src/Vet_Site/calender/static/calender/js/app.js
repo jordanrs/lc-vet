@@ -48,7 +48,7 @@ $(function () {
 				open: this.open
 			})
 			
-			return this;
+			
 		},
 		open: function(){
 			this.$('#title').val(this.model.get('title'));
