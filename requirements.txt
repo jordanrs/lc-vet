@@ -1,0 +1,9 @@
+Django==1.4
+South==0.7.6
+django-tastypie==0.9.11
+mimeparse==0.1.3
+#mysql-python==1.2.3 need to install from binary
+pil==1.1.7
+python-dateutil==1.5
+virtualenv==1.7.2
+virtualenvwrapper-win==1.0.8
