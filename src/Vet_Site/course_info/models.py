@@ -251,4 +251,8 @@ class UserProfile(models.Model):
     user = models.OneToOneField(User)
     activation_key = models.CharField(max_length=40)
     key_expires = models.DateTimeField()
-    
+
+class DontPanicSection(models.Model):
+    title = models.CharField(max_length=255)
+    body = models.TextField()   
+    position = models.IntegerField(blank = True) 

@@ -40,6 +40,7 @@ urlpatterns += patterns('vet_site.course_info.views',
      #other
      (r'^contact/$', 'contact'),
      url(r'^events/$', 'events', name = "events"),
+     url(r'^dontpanic/$', 'dontpanic', name = "dontpanic"),
      (r'^register/$', 'register'),
 )
 

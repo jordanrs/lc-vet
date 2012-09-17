@@ -59,6 +59,11 @@ def contact(request):
 def events(request):
     return render_to_response("calender.html", locals(), context_instance=RequestContext(request))
 
+@login_required
+def dontpanic(request):
+    sections = DontPanicSection.objects.all().order_by("position")
+    return render_to_response("dontpanic.html", locals(), context_instance=RequestContext(request))
+
 def register(request):
     if request.method == "POST":
         form = UserCreateForm(request.POST)
@@ -71,15 +76,15 @@ def register(request):
             key_expires = datetime.datetime.today() + datetime.timedelta(2)
             
             user = form.save()
-          #  user.is_active = False
+            #  user.is_active = False
             user.save()
             profile = UserProfile(user=user,
                                       activation_key=activation_key,
                                       key_expires=key_expires)
             profile.save()
             
-            # user = authenticate(username=username, password=password)
-            # login(request, user)
+            user = authenticate(username=username, password=password)
+            login(request, user)
             #do stuff
             return HttpResponseRedirect("/")
             

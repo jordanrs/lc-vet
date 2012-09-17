@@ -97,7 +97,12 @@ class ClassRepAdmin(admin.ModelAdmin):
 class CollegeContactAdmin(admin.ModelAdmin):
     list_display = ("title", "first_name", "last_name", "position", "email", "tel")
     order_by = ("last_name",)
+    
+class DontPanicSectionAdmin(admin.ModelAdmin):
+    list_display = ("title", "body", "position",)
+    list_editable = ("position",)
 
+admin.site.register(DontPanicSection, DontPanicSectionAdmin)
 admin.site.register(ClassRep, ClassRepAdmin)
 admin.site.register(Course, CourseAdmin)
 admin.site.register(Lecturer, LecturerAdmin)

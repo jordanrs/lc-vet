@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load vet_site_tags %}
+{% block nav %}
+    {% nav_list "" %}
+{% endblock %}
+
+{% block content %}
+<h1>Dont Panic!</h1>
+{% for section in sections %}
+    <h2>{{section.title}}</h2>
+    <div>{{section.body}}</div>
+{% endfor %}
+{% endblock %}
