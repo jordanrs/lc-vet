@@ -2,6 +2,7 @@
 #nav ul, #nav li
 {
     list-style-type: none;
+    padding-left: 15px;
 }
 
 li img {

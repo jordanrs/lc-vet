@@ -46,7 +46,7 @@
 		#content{
 			padding-left: 10px;
 			float: left;
-			
+			width: 73%;
 		}
 		.start-hidden{
 			display: none;
