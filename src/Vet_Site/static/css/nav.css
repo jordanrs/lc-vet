@@ -2,7 +2,7 @@
 #nav ul, #nav li
 {
     list-style-type: none;
-    padding-left: 15px;
+    padding: 2px 0px 0px 15px;
 }
 
 li img {
@@ -15,4 +15,5 @@ li img {
 
 #nav  {
 	display: block;
+	padding-left: 10px;
 }
