@@ -85,6 +85,8 @@ urlpatterns += patterns('',
 
 )
 
+
+
 #EVERYTHIN MUST BE ABOVE THIS
 urlpatterns += patterns('', 
       #catch all for flat pages

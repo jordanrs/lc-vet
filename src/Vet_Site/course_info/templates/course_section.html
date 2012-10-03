@@ -36,12 +36,12 @@
  </div>   
 <div id="section-essays-container" class="start-hidden">  
 <h3>Essays</h3>    
-    <ul id="section-essay">
+    <ul id="section-essays">
     </ul>
   </div>  
 <div id="section-notes-container" class="start-hidden">    
 <h3>Notes</h3>    
-    <ul id="section-note">
+    <ul id="section-notes">
     </ul>
  </div>   
 {% endblock %}
@@ -52,23 +52,23 @@
      {% for file in course_section.coursefile_set.all %}
        {% if file.type == 2 %}     
          $("#useful-material").css('display', 'block')
-         $("#section-image-container").css('display', 'block')
-         $("#section-image").append('<li><a href="{{file.get_absolute_url}}">{{file}}</a></li>')
+         $("#section-images-container").css('display', 'block')
+         $("#section-images").append('<li><a href="{{MEDIA_URL}}{{file.file}}" target="_blank">{{file}}</a></li>')
        {% endif %}
        {% if file.type == 3 %}  
          $("#useful-material").css('display', 'block')
          $("#section-lectures-container").css('display', 'block')   
-         $("#section-lectures").append('<li><a href="{{file.get_absolute_url}}">{{file}}</a></li>')
+         $("#section-lectures").append('<li><a href="{{MEDIA_URL}}{{file.file}}" target="_blank">{{file}}</a></li>')
        {% endif %}            
        {% if file.type == 4 %} 
          $("#useful-material").css('display', 'block')
-         $("#section-note-container").css('display', 'block')    
-         $("#section-note").append('<li><a href="{{file.get_absolute_url}}">{{file}}</a></li>')
+         $("#section-notes-container").css('display', 'block')    
+         $("#section-notes").append('<li><a href="{{MEDIA_URL}}{{file.file}}" target="_blank">{{file}}</a></li>')
        {% endif %}
        {% if file.type == 5 %} 
          $("#useful-material").css('display', 'block')
-         $("#section-essay-container").css('display', 'block')    
-         $("#section-essay").append('<li><a href="{{file.get_absolute_url}}">{{file}}</a></li>')
+         $("#section-essays-container").css('display', 'block')    
+         $("#section-essays").append('<li><a href="{{MEDIA_URL}}{{file.file}}" target="_blank">{{file}}</a></li>')
        {% endif %}       
      {% endfor %}
 

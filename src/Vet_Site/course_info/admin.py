@@ -1,6 +1,8 @@
 from django.contrib import admin
 from django.conf import settings
 from vet_site.course_info.models import *
+from redactor.widgets import AdminRedactorEditor
+
 
 class CourseSectionInline(admin.StackedInline):
     model = CourseSection
@@ -11,6 +13,9 @@ class CourseSectionInline(admin.StackedInline):
                  (None, {'fields': [],}),
                  ('Information', {'fields': ['topic', 'tips', 'description',  'lecturers', 'slug'], 'classes':['collapse']})
     )
+    formfield_overrides = {
+            models.TextField: {'widget': AdminRedactorEditor},
+    }
     
 class CourseFileInline(admin.StackedInline):
     model = CourseFile
@@ -20,7 +25,10 @@ class CourseFileInline(admin.StackedInline):
                 (None, {'fields': [],}),
                 ('File Information', {'fields': ['name', 'year', 'created_by', 'course_section', 'file', 'type'], 'classes':['collapse'],})
     )
-    
+    formfield_overrides = {
+            models.TextField: {'widget': AdminRedactorEditor},
+    }
+        
     def formfield_for_foreignkey(self, db_field, request=None, **kwargs):
 
     #    field = super(CourseFileInline, self).formfield_for_foreignkey(db_field, request, **kwargs)
@@ -47,7 +55,10 @@ class CourseAdmin(admin.ModelAdmin):
         
     #List display data
     list_display = ('name', 'study_year', 'school', 'num_course_sections', 'num_course_files')
-    
+    formfield_overrides = {
+            models.TextField: {'widget': AdminRedactorEditor},
+    }
+        
     def num_course_sections(self, obj):
         total = obj.coursesection_set.all()
         return total.__len__()
@@ -72,7 +83,10 @@ class LecturerAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("first_name", "surname",)}
     list_display = ('title', 'first_name', 'surname', 'age','num_course_taught', 'image_thumbnail')
     list_display_links = ('title', 'first_name', 'surname', 'age',)
-    
+    formfield_overrides = {
+            models.TextField: {'widget': AdminRedactorEditor},
+    }
+        
     def num_course_taught(self, obj):
         total = obj.coursesection_set.all()
         return total.__len__()
