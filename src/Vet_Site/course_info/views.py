@@ -29,6 +29,7 @@ def course_by_year(request, year):
 @login_required    
 def course_detail(request, year, course_slug):
     course = get_object_or_404(Course, study_year = year, slug = course_slug)
+    coursefile = get_list_or_404(CourseFile, course_id = course.id, course_section_id = None)
     return render_to_response("course_detail.html", locals(), context_instance=RequestContext(request))
 
 @login_required    

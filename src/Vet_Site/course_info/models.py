@@ -198,7 +198,7 @@ class CourseFile(models.Model):
     year = models.DateField(blank = True, null = True, help_text="Examination Year or year the file was created")
     file = models.FileField(upload_to = "uploads/course_file/")
     created_by = models.CharField(max_length = 255, blank = True, help_text="Files author")
-    course_section = models.ForeignKey(CourseSection, blank = True, help_text="Course section have to be be added and saved above to be available")
+    course_section = models.ForeignKey(CourseSection, blank = True, null = True, help_text="Course section have to be be added and saved above to be available")
     course = models.ForeignKey(Course)
     type = models.IntegerField(choices=COURSE_FILE)
     
